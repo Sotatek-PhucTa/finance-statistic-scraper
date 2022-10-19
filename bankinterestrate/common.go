@@ -1,5 +1,7 @@
 package bankinterestrate
 
+import "github.com/gocolly/colly"
+
 type BankGeneralInfo struct {
 	Code string
 	Name string
@@ -10,8 +12,8 @@ type BankRateInfo struct {
 }
 
 type BankInfo struct {
-	generalInfo BankGeneralInfo
-	rateInfo    BankRateInfo
+	GeneralInfo BankGeneralInfo
+	RateInfo    BankRateInfo
 }
 
 type RateType int64
@@ -22,12 +24,13 @@ const (
 )
 
 type InterestRate struct {
-	rateType RateType
-	duration string
-	amount   uint32
+	RateType RateType
+	Duration string
+	Amount   uint32
 }
 
 type BankScraper interface {
+	SetCollector(c *colly.Collector) BankScraper
 	GetInterestRate() []InterestRate
 	SaveInterestRate(rates []InterestRate)
 }
