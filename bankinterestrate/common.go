@@ -26,11 +26,11 @@ const (
 type InterestRate struct {
 	RateType RateType
 	Duration string
-	Amount   uint32
+	Amount   string
 }
 
 type BankScraper interface {
 	SetCollector(c *colly.Collector) BankScraper
-	GetInterestRate() []InterestRate
+	GetInterestRate() *[]InterestRate
 	SaveInterestRate(rates []InterestRate)
 }

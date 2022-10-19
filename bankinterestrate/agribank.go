@@ -35,6 +35,7 @@ func (agribankScraper AgribankScraper) SetCollector(c *colly.Collector) Agribank
 }
 
 func (agribankScraper AgribankScraper) GetInterestRate() []InterestRate {
+	var interestRates []InterestRate
 	agribankScraper.c.OnRequest(func(request *colly.Request) {
 		fmt.Println("Visiting", request.URL.String())
 	})
@@ -42,14 +43,20 @@ func (agribankScraper AgribankScraper) GetInterestRate() []InterestRate {
 	agribankScraper.c.OnHTML("div#laiSuatCn > table > tbody", func(laiSuatCnData *colly.HTMLElement) {
 		fmt.Println("Lai suat CN")
 		laiSuatCnData.ForEach("tr", func(_ int, tr *colly.HTMLElement) {
-			fmt.Println(tr.ChildText("td:nth-child(1)"), " ", tr.ChildText("td:nth-child(2)"))
+			interestRates = append(interestRates, InterestRate{
+				RateType: PersonalRate,
+				Duration: tr.ChildText("td:nth-child(1)"),
+				Amount:   tr.ChildText("td:nth-child(2)")})
 		})
 	})
 
 	agribankScraper.c.OnHTML("div#laiSuatDn > table > tbody", func(laiSuatCnData *colly.HTMLElement) {
 		fmt.Println("Lai suat DN")
 		laiSuatCnData.ForEach("tr", func(_ int, tr *colly.HTMLElement) {
-			fmt.Println(tr.ChildText("td:nth-child(1)"), " ", tr.ChildText("td:nth-child(2)"))
+			interestRates = append(interestRates, InterestRate{
+				RateType: PersonalRate,
+				Duration: tr.ChildText("td:nth-child(1)"),
+				Amount:   tr.ChildText("td:nth-child(2)")})
 		})
 	})
 
@@ -58,5 +65,5 @@ func (agribankScraper AgribankScraper) GetInterestRate() []InterestRate {
 	})
 
 	agribankScraper.c.Visit(agribankScraper.AgribankInfo.RateInfo.InterestRate)
-	return nil
+	return interestRates
 }
