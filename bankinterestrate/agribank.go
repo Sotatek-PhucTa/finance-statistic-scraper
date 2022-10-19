@@ -11,7 +11,7 @@ type AgribankScraper struct {
 	InterestRate []InterestRate
 }
 
-var agribankScraper *AgribankScraper
+var agribankScraper AgribankScraper
 
 func init() {
 	var agribankInfo = BankInfo{
@@ -23,10 +23,10 @@ func init() {
 			InterestRate: "https://www.agribank.com.vn/vn/lai-suat",
 		},
 	}
-	agribankScraper = &AgribankScraper{AgribankInfo: agribankInfo}
+	agribankScraper = AgribankScraper{AgribankInfo: agribankInfo}
 }
 
-func GetAgribankScraper() *AgribankScraper {
+func GetAgribankScraper() AgribankScraper {
 	return agribankScraper
 }
 
