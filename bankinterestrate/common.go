@@ -31,6 +31,6 @@ type InterestRate struct {
 
 type BankScraper interface {
 	SetCollector(c *colly.Collector) BankScraper
-	GetInterestRate() *[]InterestRate
-	SaveInterestRate(rates []InterestRate)
+	GetInterestRate() BankScraper
+	SaveInterestRate(consoleOutput bool)
 }
