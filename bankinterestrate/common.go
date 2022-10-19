@@ -24,6 +24,7 @@ const (
 )
 
 type InterestRate struct {
+	BankCode string
 	RateType RateType
 	Duration string
 	Amount   string
