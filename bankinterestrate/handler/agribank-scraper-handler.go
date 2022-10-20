@@ -10,14 +10,14 @@ type AgribankScraperHandler struct {
 	c *colly.Collector
 }
 
-var agribankScraperHandler AgribankScraperHandler
+var agribankScraperHandler *AgribankScraperHandler
 
 func init() {
 	var c = colly.NewCollector()
-	agribankScraperHandler = AgribankScraperHandler{c: c}
+	agribankScraperHandler = &AgribankScraperHandler{c: c}
 }
 
-func GetAgribankScraperHandler() AgribankScraperHandler {
+func GetAgribankScraperHandler() *AgribankScraperHandler {
 	return agribankScraperHandler
 }
 
