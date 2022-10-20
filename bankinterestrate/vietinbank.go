@@ -23,7 +23,8 @@ func init() {
 			InterestRate: "https://www.vietinbank.vn/web/home/vn/lai-suat",
 		},
 	}
-	vietinbankScraper = VietinbankScraper{VietinbankInfo: vietinbankInfo}
+	var c = colly.NewCollector()
+	vietinbankScraper = VietinbankScraper{VietinbankInfo: vietinbankInfo, c: c}
 }
 
 func GetVietinbankScraper() VietinbankScraper {

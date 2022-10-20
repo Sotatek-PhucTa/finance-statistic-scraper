@@ -23,7 +23,8 @@ func init() {
 			InterestRate: "https://www.agribank.com.vn/vn/lai-suat",
 		},
 	}
-	agribankScraper = AgribankScraper{AgribankInfo: agribankInfo}
+	var c = colly.NewCollector()
+	agribankScraper = AgribankScraper{AgribankInfo: agribankInfo, c: c}
 }
 
 func GetAgribankScraper() AgribankScraper {
