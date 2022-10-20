@@ -7,5 +7,6 @@ import (
 
 func main() {
 	c := colly.NewCollector()
-	bankinterestrate.GetAgribankScraper().SetCollector(c).GetInterestRate().SaveInterestRate(true)
+	//bankinterestrate.GetAgribankScraper().SetCollector(c).GetInterestRate().SaveInterestRate(true)
+	bankinterestrate.GetVietinbankScraper().SetCollector(c).GetInterestRate().SaveInterestRate(true)
 }
