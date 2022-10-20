@@ -35,3 +35,10 @@ type BankScraper interface {
 	GetInterestRate() BankScraper
 	SaveInterestRate(consoleOutput bool)
 }
+
+type BankScraperHandler interface {
+	SetCollector(c *colly.Collector)
+	GetPersonalInterestRate(url string) []InterestRate
+	GetBusinessInterestRate(url string) []InterestRate
+	GetInterestRate(url string) []InterestRate
+}
