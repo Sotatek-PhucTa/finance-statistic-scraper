@@ -5,6 +5,9 @@ import (
 )
 
 func main() {
-	bankinterestrate.GetAgribankScraper().GetInterestRate().SaveInterestRate(true)
-	bankinterestrate.GetVietinbankScraper().GetInterestRate().SaveInterestRate(true)
+	var agribankScraper = bankinterestrate.GetAgribankScraper()
+	agribankScraper.GetBusinessInterestRate()
+	agribankScraper.GetPersonalInterestRate()
+	agribankScraper.SaveInterestRate(true)
+	//bankinterestrate.GetVietinbankScraper().GetInterestRate().SaveInterestRate(true)
 }

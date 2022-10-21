@@ -1,6 +1,8 @@
 package bankinterestrate
 
-import "github.com/gocolly/colly"
+import (
+	"fmt"
+)
 
 type BankGeneralInfo struct {
 	Code string
@@ -9,11 +11,6 @@ type BankGeneralInfo struct {
 
 type BankRateInfo struct {
 	InterestRate string
-}
-
-type BankInfo struct {
-	GeneralInfo BankGeneralInfo
-	RateInfo    BankRateInfo
 }
 
 type RateType int64
@@ -30,14 +27,47 @@ type InterestRate struct {
 	Amount   string
 }
 
+type BankScraperHandler interface {
+	GetPersonalInterestRate(url string) []InterestRate
+	GetBusinessInterestRate(url string) []InterestRate
+}
+
+type BankInfo struct {
+	GeneralInfo          BankGeneralInfo
+	RateInfo             BankRateInfo
+	Handler              BankScraperHandler
+	PersonalInterestRate []InterestRate
+	BusinessInterestRate []InterestRate
+}
+
 type BankScraper interface {
-	SetCollector(c *colly.Collector) BankScraper
-	GetInterestRate() BankScraper
+	SetScraperHandler(handler *BankScraperHandler)
+	GetPersonalInterestRate()
+	GetBusinessInterestRate()
 	SaveInterestRate(consoleOutput bool)
 }
 
-type BankScraperHandler interface {
-	SetCollector(c *colly.Collector)
-	GetPersonalInterestRate(url string) []InterestRate
-	GetBusinessInterestRate(url string) []InterestRate
+func (bank *BankInfo) SetScraperHandler(handler BankScraperHandler) {
+	bank.Handler = handler
+}
+
+func (bank *BankInfo) GetPersonalInterestRate() {
+	var interestRates = bank.Handler.GetPersonalInterestRate(bank.RateInfo.InterestRate)
+	bank.PersonalInterestRate = interestRates
+}
+
+func (bank *BankInfo) GetBusinessInterestRate() {
+	var interestRates = bank.Handler.GetBusinessInterestRate(bank.RateInfo.InterestRate)
+	bank.BusinessInterestRate = interestRates
+}
+
+func (bank *BankInfo) SaveInterestRate(consoleOutput bool) {
+	if consoleOutput {
+		for _, rate := range bank.PersonalInterestRate {
+			fmt.Println(rate)
+		}
+		for _, rate := range bank.BusinessInterestRate {
+			fmt.Println(rate)
+		}
+	}
 }
