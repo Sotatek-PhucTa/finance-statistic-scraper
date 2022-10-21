@@ -54,12 +54,12 @@ func (bank *BankInfo) SetScraperHandler(handler BankScraperHandler) {
 
 func (bank *BankInfo) GetPersonalInterestRate() {
 	var interestRates = bank.Handler.GetPersonalInterestRate(bank.RateInfo.PersonalInterestRate)
-	bank.PersonalInterestRate = interestRates
+	bank.PersonalInterestRate = standardizeInterestRate(interestRates, bank)
 }
 
 func (bank *BankInfo) GetBusinessInterestRate() {
 	var interestRates = bank.Handler.GetBusinessInterestRate(bank.RateInfo.BusinessInterestRate)
-	bank.BusinessInterestRate = interestRates
+	bank.BusinessInterestRate = standardizeInterestRate(interestRates, bank)
 }
 
 func (bank *BankInfo) SaveInterestRate(consoleOutput bool) {
@@ -71,4 +71,13 @@ func (bank *BankInfo) SaveInterestRate(consoleOutput bool) {
 			fmt.Println(rate)
 		}
 	}
+}
+
+func standardizeInterestRate(rates []InterestRate, bankInfo *BankInfo) []InterestRate {
+	var newRates []InterestRate
+	for _, rate := range rates {
+		rate.BankCode = bankInfo.GeneralInfo.Code
+		newRates = append(newRates, rate)
+	}
+	return newRates
 }
