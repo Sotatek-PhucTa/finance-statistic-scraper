@@ -20,7 +20,7 @@ func init() {
 			Name: "VIETINBANK",
 		},
 		RateInfo: BankRateInfo{
-			InterestRate: "https://www.vietinbank.vn/web/home/vn/lai-suat",
+			PersonalInterestRate: "https://www.vietinbank.vn/web/home/vn/lai-suat",
 		},
 	}
 	var c = colly.NewCollector()
@@ -65,7 +65,7 @@ func (vietinbankScraper VietinbankScraper) GetInterestRate() VietinbankScraper {
 	vietinbankScraper.c.OnError(func(response *colly.Response, err error) {
 		fmt.Println(err)
 	})
-	vietinbankScraper.c.Visit(vietinbankScraper.VietinbankInfo.RateInfo.InterestRate)
+	vietinbankScraper.c.Visit(vietinbankScraper.VietinbankInfo.RateInfo.PersonalInterestRate)
 	vietinbankScraper.InterestRate = interestRates
 	return vietinbankScraper
 }

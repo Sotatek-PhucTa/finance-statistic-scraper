@@ -10,7 +10,8 @@ type BankGeneralInfo struct {
 }
 
 type BankRateInfo struct {
-	InterestRate string
+	PersonalInterestRate string
+	BusinessInterestRate string
 }
 
 type RateType int64
@@ -52,12 +53,12 @@ func (bank *BankInfo) SetScraperHandler(handler BankScraperHandler) {
 }
 
 func (bank *BankInfo) GetPersonalInterestRate() {
-	var interestRates = bank.Handler.GetPersonalInterestRate(bank.RateInfo.InterestRate)
+	var interestRates = bank.Handler.GetPersonalInterestRate(bank.RateInfo.PersonalInterestRate)
 	bank.PersonalInterestRate = interestRates
 }
 
 func (bank *BankInfo) GetBusinessInterestRate() {
-	var interestRates = bank.Handler.GetBusinessInterestRate(bank.RateInfo.InterestRate)
+	var interestRates = bank.Handler.GetBusinessInterestRate(bank.RateInfo.BusinessInterestRate)
 	bank.BusinessInterestRate = interestRates
 }
 
