@@ -1,9 +1,9 @@
 package bankinterestrate
 
-var agribankScraper BankInfo
+var agribankScraper *BankInfo
 
 func init() {
-	agribankScraper = BankInfo{
+	agribankScraper = &BankInfo{
 		GeneralInfo: BankGeneralInfo{
 			Code: "AGRIBANK",
 			Name: "AGRIBANK",
@@ -18,6 +18,6 @@ func init() {
 	agribankScraper.SetScraperHandler(agribankScraperHandler)
 }
 
-func GetAgribankScraper() BankInfo {
+func GetAgribankScraper() *BankInfo {
 	return agribankScraper
 }

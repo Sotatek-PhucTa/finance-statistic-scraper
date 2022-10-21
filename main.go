@@ -9,5 +9,8 @@ func main() {
 	agribankScraper.GetBusinessInterestRate()
 	agribankScraper.GetPersonalInterestRate()
 	agribankScraper.SaveInterestRate(true)
-	//bankinterestrate.GetVietinbankScraper().GetInterestRate().SaveInterestRate(true)
+	var vietinbankScraper = bankinterestrate.GetVietinbankScraper()
+	vietinbankScraper.GetBusinessInterestRate()
+	vietinbankScraper.GetPersonalInterestRate()
+	vietinbankScraper.SaveInterestRate(true)
 }
