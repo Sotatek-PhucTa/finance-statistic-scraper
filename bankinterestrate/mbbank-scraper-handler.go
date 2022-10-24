@@ -1,19 +1,20 @@
 package bankinterestrate
 
 import (
-	"encoding/json"
 	"fmt"
-	"net/http"
+	"github.com/go-resty/resty/v2"
 )
 
 type MbbankScraperHandler struct{}
 
 func (m MbbankScraperHandler) GetPersonalInterestRate(requestInfo RateRequestInfo) []InterestRate {
 	var interestRates []InterestRate
-	resp, _ := http.Get(requestInfo.Url)
-	var res map[string]interface{}
-	json.NewDecoder(resp.Body).Decode(&res)
-	fmt.Println(res)
+	client := resty.New()
+	resp, _ := client.R().SetHeaders(requestInfo.Header).Get(requestInfo.Url)
+	fmt.Println(resp)
+	//var res map[string]interface{}
+	//json.NewDecoder(resp.Body()).Decode(&res)
+	//fmt.Println(res)
 	return interestRates
 }
 

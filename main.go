@@ -2,7 +2,6 @@ package main
 
 import (
 	"finance-statistic-scraper/bankinterestrate"
-	"fmt"
 )
 
 func main() {
@@ -18,8 +17,11 @@ func main() {
 	//vietcombankScraper.GetPersonalInterestRate()
 	//vietcombankScraper.GetBusinessInterestRate()
 	//vietcombankScraper.SaveInterestRate(true)
-	var bidvScraper = bankinterestrate.GetBidvScraper()
-	fmt.Println("bidv scraper", bidvScraper)
-	bidvScraper.GetPersonalInterestRate()
-	bidvScraper.SaveInterestRate(true)
+	//var bidvScraper = bankinterestrate.GetBidvScraper()
+	//fmt.Println("bidv scraper", bidvScraper)
+	//bidvScraper.GetPersonalInterestRate()
+	//bidvScraper.SaveInterestRate(true)
+	var mbbankScraper = bankinterestrate.GetMbbankScraper()
+	mbbankScraper.GetPersonalInterestRate()
+	mbbankScraper.SaveInterestRate(true)
 }
