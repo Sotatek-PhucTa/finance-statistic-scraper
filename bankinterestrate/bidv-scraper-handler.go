@@ -9,9 +9,9 @@ import (
 
 type BidvScraperHandler struct{}
 
-func (b BidvScraperHandler) GetPersonalInterestRate(url string) []InterestRate {
+func (b BidvScraperHandler) GetPersonalInterestRate(requestInfo RateRequestInfo) []InterestRate {
 	var interestRates []InterestRate
-	resp, _ := http.Post(url, "application/json", new(bytes.Buffer))
+	resp, _ := http.Post(requestInfo.Url, "application/json", new(bytes.Buffer))
 	var res map[string]interface{}
 	json.NewDecoder(resp.Body).Decode(&res)
 	for k, v := range res {
@@ -36,7 +36,7 @@ func (b BidvScraperHandler) GetPersonalInterestRate(url string) []InterestRate {
 	return interestRates
 }
 
-func (b BidvScraperHandler) GetBusinessInterestRate(url string) []InterestRate {
+func (b BidvScraperHandler) GetBusinessInterestRate(requestInfo RateRequestInfo) []InterestRate {
 	//TODO implement me
 	panic("Need to extract information from pdf, comeback later")
 }

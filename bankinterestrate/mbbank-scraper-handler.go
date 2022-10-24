@@ -8,16 +8,16 @@ import (
 
 type MbbankScraperHandler struct{}
 
-func (m MbbankScraperHandler) GetPersonalInterestRate(url string) []InterestRate {
+func (m MbbankScraperHandler) GetPersonalInterestRate(requestInfo RateRequestInfo) []InterestRate {
 	var interestRates []InterestRate
-	resp, _ := http.Get(url)
+	resp, _ := http.Get(requestInfo.Url)
 	var res map[string]interface{}
 	json.NewDecoder(resp.Body).Decode(&res)
 	fmt.Println(res)
 	return interestRates
 }
 
-func (m MbbankScraperHandler) GetBusinessInterestRate(url string) []InterestRate {
+func (m MbbankScraperHandler) GetBusinessInterestRate(requestInfo RateRequestInfo) []InterestRate {
 	//TODO implement me
 	panic("implement me")
 }

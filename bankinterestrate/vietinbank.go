@@ -9,8 +9,8 @@ func init() {
 			Name: "VIETINBANK",
 		},
 		RateInfo: BankRateInfo{
-			PersonalInterestRate: "https://www.vietinbank.vn/web/home/vn/lai-suat",
-			BusinessInterestRate: "https://www.vietinbank.vn/web/home/vn/lai-suat",
+			PersonalInterestRate: RateRequestInfo{Url: "https://www.vietinbank.vn/web/home/vn/lai-suat"},
+			BusinessInterestRate: RateRequestInfo{Url: "https://www.vietinbank.vn/web/home/vn/lai-suat"},
 		},
 	}
 	var vietinbankScraperHandler = GetVietinbankScraperHandler()

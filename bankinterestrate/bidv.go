@@ -9,8 +9,8 @@ func init() {
 			Name: "BIDV",
 		},
 		RateInfo: BankRateInfo{
-			PersonalInterestRate: "https://www.bidv.com.vn/ServicesBIDV/InterestDetailServlet",
-			BusinessInterestRate: "https://www.bidv.com.vn/ServicesBIDV/InterestDetailServlet",
+			PersonalInterestRate: RateRequestInfo{Url: "https://www.bidv.com.vn/ServicesBIDV/InterestDetailServlet"},
+			BusinessInterestRate: RateRequestInfo{Url: "https://www.bidv.com.vn/ServicesBIDV/InterestDetailServlet"},
 		},
 	}
 	var bidvScraperHandler = GetBidvScraperHandler()

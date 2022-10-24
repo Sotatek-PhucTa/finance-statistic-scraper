@@ -17,7 +17,7 @@ func GetAgribankScraperHandler() *AgribankScraperHandler {
 	return agribankScraperHandler
 }
 
-func (handler *AgribankScraperHandler) GetPersonalInterestRate(url string) []InterestRate {
+func (handler *AgribankScraperHandler) GetPersonalInterestRate(requestInfo RateRequestInfo) []InterestRate {
 	fmt.Println("Get Personal rate")
 	c := colly.NewCollector()
 	var interestRates []InterestRate
@@ -39,11 +39,11 @@ func (handler *AgribankScraperHandler) GetPersonalInterestRate(url string) []Int
 		fmt.Printf("Visited %s with status code %d\n", response.Request.URL.String(), response.StatusCode)
 	})
 
-	c.Visit(url)
+	c.Visit(requestInfo.Url)
 	return interestRates
 }
 
-func (handler *AgribankScraperHandler) GetBusinessInterestRate(url string) []InterestRate {
+func (handler *AgribankScraperHandler) GetBusinessInterestRate(requestInfo RateRequestInfo) []InterestRate {
 	fmt.Println("Get Business rate")
 	c := colly.NewCollector()
 	var interestRates []InterestRate
@@ -65,6 +65,6 @@ func (handler *AgribankScraperHandler) GetBusinessInterestRate(url string) []Int
 		fmt.Printf("Visited %s with status code %d\n", response.Request.URL.String(), response.StatusCode)
 	})
 
-	c.Visit(url)
+	c.Visit(requestInfo.Url)
 	return interestRates
 }

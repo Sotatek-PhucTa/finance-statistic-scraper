@@ -9,9 +9,14 @@ type BankGeneralInfo struct {
 	Name string
 }
 
+type RateRequestInfo struct {
+	Url    string
+	Header map[string]string
+}
+
 type BankRateInfo struct {
-	PersonalInterestRate string
-	BusinessInterestRate string
+	PersonalInterestRate RateRequestInfo
+	BusinessInterestRate RateRequestInfo
 }
 
 type RateType int64
@@ -29,8 +34,8 @@ type InterestRate struct {
 }
 
 type BankScraperHandler interface {
-	GetPersonalInterestRate(url string) []InterestRate
-	GetBusinessInterestRate(url string) []InterestRate
+	GetPersonalInterestRate(requestInfo RateRequestInfo) []InterestRate
+	GetBusinessInterestRate(requestInfo RateRequestInfo) []InterestRate
 }
 
 type BankInfo struct {

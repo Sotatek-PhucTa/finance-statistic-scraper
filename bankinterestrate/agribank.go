@@ -9,8 +9,8 @@ func init() {
 			Name: "AGRIBANK",
 		},
 		RateInfo: BankRateInfo{
-			PersonalInterestRate: "https://www.agribank.com.vn/vn/lai-suat",
-			BusinessInterestRate: "https://www.agribank.com.vn/vn/lai-suat",
+			PersonalInterestRate: RateRequestInfo{Url: "https://www.agribank.com.vn/vn/lai-suat"},
+			BusinessInterestRate: RateRequestInfo{Url: "https://www.agribank.com.vn/vn/lai-suat"},
 		},
 	}
 

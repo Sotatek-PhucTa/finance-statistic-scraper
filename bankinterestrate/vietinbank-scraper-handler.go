@@ -7,7 +7,7 @@ import (
 
 type VietinbankScraperHandler struct{}
 
-func (v *VietinbankScraperHandler) GetPersonalInterestRate(url string) []InterestRate {
+func (v *VietinbankScraperHandler) GetPersonalInterestRate(requestInfo RateRequestInfo) []InterestRate {
 	var interestRates []InterestRate
 	c := colly.NewCollector()
 	c.OnRequest(func(request *colly.Request) {
@@ -28,11 +28,11 @@ func (v *VietinbankScraperHandler) GetPersonalInterestRate(url string) []Interes
 	c.OnResponse(func(response *colly.Response) {
 		fmt.Printf("Visited %s with status code %d\n", response.Request.URL.String(), response.StatusCode)
 	})
-	c.Visit(url)
+	c.Visit(requestInfo.Url)
 	return interestRates
 }
 
-func (v *VietinbankScraperHandler) GetBusinessInterestRate(url string) []InterestRate {
+func (v *VietinbankScraperHandler) GetBusinessInterestRate(requestInfo RateRequestInfo) []InterestRate {
 	var interestRates []InterestRate
 	c := colly.NewCollector()
 	c.OnRequest(func(request *colly.Request) {
@@ -53,7 +53,7 @@ func (v *VietinbankScraperHandler) GetBusinessInterestRate(url string) []Interes
 	c.OnResponse(func(response *colly.Response) {
 		fmt.Printf("Visited %s with status code %d\n", response.Request.URL.String(), response.StatusCode)
 	})
-	c.Visit(url)
+	c.Visit(requestInfo.Url)
 	return interestRates
 }
 

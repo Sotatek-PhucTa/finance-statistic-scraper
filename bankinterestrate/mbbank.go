@@ -9,8 +9,8 @@ func init() {
 			Name: "MBB",
 		},
 		RateInfo: BankRateInfo{
-			PersonalInterestRate: "https://www.mbbank.com.vn/api/GetlistFee",
-			BusinessInterestRate: "https://www.mbbank.com.vn/api/GetlistFee",
+			PersonalInterestRate: RateRequestInfo{Url: "https://www.mbbank.com.vn/api/GetlistFee"},
+			BusinessInterestRate: RateRequestInfo{Url: "https://www.mbbank.com.vn/api/GetlistFee"},
 		},
 	}
 	var mbbankScraperHandler = GetMbbankScraperHandler()
